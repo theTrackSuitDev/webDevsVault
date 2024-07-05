@@ -1,0 +1,23 @@
+.about {
+    width: 50%;
+    margin: 3em auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    text-align: center;
+}
+
+.about .img {
+    max-width: 300px;
+}
+
+.about .img img {
+    width: 100%;
+}
+
+.mention {
+    font-size: 0.8em;
+    margin-top: 2em;
+}

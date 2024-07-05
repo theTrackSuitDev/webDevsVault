@@ -1,0 +1,24 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15em;
+}
+
+.not-found h1 {
+    font-size: 8em;
+}
+
+.not-found > p {
+    font-size: 2em;
+    margin-bottom: 3em;
+}
+
+.quote p:nth-of-type(1) {
+    font-style: italic;
+}
+
+.quote p:nth-of-type(2) {
+    text-align: right;
+}
