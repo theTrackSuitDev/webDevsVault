@@ -1,40 +1,88 @@
 import logo from "../../assets/images/light-bulb-gear-13626.png";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
     return (
         <header>
             <div className="logo">
-                <a href="">
+                <Link to="/">
                     <img src={logo} alt="Bulb-logo" />
-                </a>
+                </Link>
             </div>
             <nav>
                 <ul>
                     <li id="nav-home">
-                        <a href="#" className="nav-active">
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
                             Home
-                        </a>
+                        </NavLink>
                     </li>
                     <li id="nav-vault">
-                        <a href="#">Vault</a>
+                        <NavLink
+                            to="/vault"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            Vault
+                        </NavLink>
                     </li>
                     <li id="nav-add">
-                        <a href="#">Add Resource</a>
+                        <NavLink
+                            to="/add-resource"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            Add Resource
+                        </NavLink>
                     </li>
                     <li id="nav-profile">
-                        <a href="#">Profile</a>
+                        <NavLink
+                            to="/profile:userId"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            Profile
+                        </NavLink>
                     </li>
                     <li id="nav-login">
-                        <a href="#">Login</a>
+                        <NavLink
+                            to="/login"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            Login
+                        </NavLink>
                     </li>
                     <li id="nav-register">
-                        <a href="#">Register</a>
+                        <NavLink
+                            to="/register"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            Register
+                        </NavLink>
                     </li>
                     <li id="nav-about">
-                        <a href="#">About</a>
+                        <NavLink
+                            to="/about"
+                            className={({ isActive }) =>
+                                isActive ? "nav-active" : undefined
+                            }
+                        >
+                            About
+                        </NavLink>
                     </li>
                     <li id="nav-logout">
-                        <a href="#">Logout</a>
+                        <NavLink to="/logout">Logout</NavLink>
                     </li>
                 </ul>
             </nav>

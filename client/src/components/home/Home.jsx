@@ -1,4 +1,5 @@
 import bannerImage from "../../assets/images/management-or-business-collaboration-black-outline-18878.png";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -26,10 +27,10 @@ export default function Home() {
                     </p>
                     <p>Contribute by sharing valuable resources with others!</p>
                     <div className={`${styles.button} ${styles["join-button"]}`}>
-                        <a href="#">Sign up!</a>
+                        <Link to="#">Sign up!</Link>
                     </div>
                     {/* <div className={`${styles.button} ${styles["catalog-button"]}`}>
-                      <a href="#">Access the Vault!</a>
+                      <Link to="#">Access the Vault!</Link>
                     </div> */}
                 </div>
             </section>
