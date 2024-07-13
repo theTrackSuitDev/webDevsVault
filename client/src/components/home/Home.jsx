@@ -27,10 +27,10 @@ export default function Home() {
                     </p>
                     <p>Contribute by sharing valuable resources with others!</p>
                     <div className={`${styles.button} ${styles["join-button"]}`}>
-                        <Link to="#">Sign up!</Link>
+                        <Link to="/register">Sign up!</Link>
                     </div>
                     {/* <div className={`${styles.button} ${styles["catalog-button"]}`}>
-                      <Link to="#">Access the Vault!</Link>
+                      <Link to="/vault">Access the Vault!</Link>
                     </div> */}
                 </div>
             </section>
