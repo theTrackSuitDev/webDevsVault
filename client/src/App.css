@@ -123,3 +123,36 @@ div.logo:hover {
     border-radius: 0.2em;
     opacity: 50%;
 }
+
+/* Footer  */
+
+footer {
+    position: absolute;
+    bottom: 0.5em;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .icons {
+    font-family: FontAwesome;
+    display: flex;
+    gap: 1em;
+}
+
+footer .icons a {
+    text-decoration: none;
+    color:#24333C;
+    font-size: 1.8em;
+}
+
+footer .icons a:hover {
+    color: #1AB188;
+}
+
+footer p {
+    font-size: 0.8em;
+}

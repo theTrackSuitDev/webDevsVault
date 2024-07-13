@@ -5,7 +5,6 @@ export default function Header() {
         <header>
             <div className="logo">
                 <a href="">
-                    {" "}
                     <img src={logo} alt="Bulb-logo" />
                 </a>
             </div>
