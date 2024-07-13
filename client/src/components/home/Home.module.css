@@ -1,0 +1,64 @@
+/* Main Banner */
+
+.banner {
+    max-width: 90%;
+    margin: 4em auto;
+}
+
+.main-title, .main-desc {
+    text-align: center;
+}
+
+.main-title {
+    font-size: 3.5em;
+}
+
+.main-desc {
+    font-size: 1.2em;
+}
+
+.banner .description {
+    display: flex; 
+    margin-top: 5em;   
+}
+
+.banner .description .main-image {
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .description .main-image img {
+    width: 50%;
+}
+
+.banner .description .text {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.13em;
+    padding-top: 4em;
+    text-align: center;
+}
+
+.banner .description .text .button {
+    margin-top: 3.5em;
+}
+
+.banner .description .text .button a {
+    border: 1px solid #1AB188;
+    background-color: #1AB188;
+    border-radius: 0.3em;
+    text-decoration: none;
+    color: white;
+    padding: 1em 2em;
+    font-size: 1.3em;
+}
+
+.banner .description .text .button a:hover {
+    background-color: #24333C;
+    color: #1AB188;
+}

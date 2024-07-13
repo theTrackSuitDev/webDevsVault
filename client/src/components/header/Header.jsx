@@ -1,4 +1,4 @@
-import logo from "../../assets/images/light-bulb-gear-13626.png"
+import logo from "../../assets/images/light-bulb-gear-13626.png";
 
 export default function Header() {
     return (
