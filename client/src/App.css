@@ -65,3 +65,61 @@ body {
     position: relative;
     height: 98.5vh;
 }
+
+/* Header - Logo & Navigation */
+
+.content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    padding: 0.5em 1em;
+}
+
+.content header nav {
+    padding: 2px;
+}
+
+.content header nav ul {
+    display: flex;
+    gap: 0.3em;
+    list-style: none;
+}
+
+.content header nav ul a {
+    border: 1px solid transparent;
+    border-radius: 0.2em;
+    text-decoration: none;
+    color: white;
+    padding: 0.5em 1em;
+}
+
+.content header nav ul a:hover {
+    color: #1AB188;
+    border-color: #1AB188;
+}
+
+.content header nav ul a.nav-active {
+    background-color: #1AB188;
+    border-color: #1AB188;
+}
+
+.content header nav ul a.nav-active:hover {
+    color: #435359;
+}
+
+div.logo {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+div.logo img {
+    height: 100%;
+    width: 100%;
+}
+
+div.logo:hover {
+    border: 2px transparent;
+    border-radius: 0.2em;
+    opacity: 50%;
+}
