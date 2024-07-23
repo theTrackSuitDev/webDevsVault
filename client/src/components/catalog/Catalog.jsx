@@ -1,4 +1,4 @@
-import CatalogEntry from "./catalog-entry/CatalogEntry";
+import CatalogEntry from "../catalog-entry/CatalogEntry";
 import styles from "./Catalog.module.css";
 
 export default function Catalog() {

@@ -1,5 +1,5 @@
-import docImage from "../../../assets/images/document-901.png";
-import styles from "../Catalog.module.css"
+import docImage from "../../assets/images/document-901.png";
+import styles from "../catalog/Catalog.module.css"
 
 export default function CatalogEntry() {
     return (

@@ -22,7 +22,7 @@
     border-collapse: collapse;
 }
 
-.catalog td.img {
+td.img {
     width: 50px;
     padding: 0.2em;
 }
