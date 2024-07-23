@@ -1,18 +1,18 @@
 export default function Footer() {
     return (
         <footer>
-            <div class="icons">
+            <div className="icons">
                 <a
                     href="https://github.com/theTrackSuitDev/webDevsVault"
                     target="_blank"
                 >
-                    <i class="fa-brands fa-github"></i>
+                    <i className="fa-brands fa-github"></i>
                 </a>
                 <a href="https://t.me/+VN2i12PAynpiNDBk" target="_blank">
-                    <i class="fa-brands fa-telegram"></i>
+                    <i className="fa-brands fa-telegram"></i>
                 </a>
                 <a href="https://www.facebook.com/softuni.bg/" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
+                    <i className="fa-brands fa-facebook"></i>
                 </a>
             </div>
             <p>This app is created for educational and demo purposes only.</p>
