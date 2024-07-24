@@ -11,6 +11,7 @@ import EditResource from "./components/add-edit-resource/EditResource";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Details from "./components/details/Details";
+import NotFound from "./components/not-found/NotFound";
 
 function App() {
     return (
@@ -29,6 +30,8 @@ function App() {
                         <Route path="/login" element={<Login />}/>
                         <Route path="/register" element={<Register />}/>
                         <Route path="/details/*" element={<Details />}/>
+                        <Route path="/not-found" element={<NotFound />}/>
+                        <Route path="*" element={<NotFound />}/>
                     </Routes>
                 </main>
 
