@@ -8,6 +8,8 @@ import Catalog from "./components/catalog/Catalog";
 import AddResource from "./components/add-edit-resource/AddResource";
 import Profile from "./components/profile/Profile";
 import EditResource from "./components/add-edit-resource/EditResource";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
                         <Route path="/add-resource" element={<AddResource />}/>
                         <Route path="/edit/*" element={<EditResource />}/>
                         <Route path="/profiles/*" element={<Profile />}/>
+                        <Route path="/login" element={<Login />}/>
+                        <Route path="/register" element={<Register />}/>
                     </Routes>
                 </main>
 

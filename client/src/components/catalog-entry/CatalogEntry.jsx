@@ -1,5 +1,6 @@
 import docImage from "../../assets/images/document-901.png";
 import styles from "../catalog/Catalog.module.css"
+import { Link } from "react-router-dom";
 
 export default function CatalogEntry() {
     return (
@@ -12,7 +13,7 @@ export default function CatalogEntry() {
         <td className="added">12-06-2024</td>
         <td className="details">
             <div className={styles["details-button"]}>
-                <a href="#">Details</a>
+                <Link to="/details/:resourceId">Details</Link>
             </div>
         </td>
     </tr>
