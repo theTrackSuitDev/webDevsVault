@@ -10,6 +10,7 @@ import Profile from "./components/profile/Profile";
 import EditResource from "./components/add-edit-resource/EditResource";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Details from "./components/details/Details";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route path="/profiles/*" element={<Profile />}/>
                         <Route path="/login" element={<Login />}/>
                         <Route path="/register" element={<Register />}/>
+                        <Route path="/details/*" element={<Details />}/>
                     </Routes>
                 </main>
 
