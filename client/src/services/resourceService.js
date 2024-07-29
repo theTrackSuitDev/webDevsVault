@@ -9,14 +9,14 @@ export const getAll = async () => {
 };
 
 export const getOne = async (resourceId) => {
-    const result = await request.get(`${baseUrl}/${resourceId}`, );
+    const result = await axios.get(`${baseUrl}/${resourceId}`, );
 
     return result;
 }
 
 
 export const create = async (resourceData) => {
-    const result = await request.post(
+    const result = await axios.post(
         baseUrl, 
         resourceData, 
         { withCredentials: true });
@@ -25,7 +25,7 @@ export const create = async (resourceData) => {
 };
 
 export const edit = async (resourceId, resourceData) => {
-    const result = await request.put(
+    const result = await axios.put(
         `${baseUrl}/${resourceId}`, 
         resourceData,
         { withCredentials: true }
@@ -35,7 +35,7 @@ export const edit = async (resourceId, resourceData) => {
 };
 
 export const addToFavorites = async (resourceId) => {
-    const result = await request.put(
+    const result = await axios.put(
         `${baseUrl}/fav/${resourceId}`, 
         { withCredentials: true }
     );
@@ -44,7 +44,7 @@ export const addToFavorites = async (resourceId) => {
 };
 
 export const removeFromFavorites = async (resourceId) => {
-    const result = await request.put(
+    const result = await axios.put(
         `${baseUrl}/unfav/${resourceId}`, 
         { withCredentials: true }
     );
@@ -53,7 +53,7 @@ export const removeFromFavorites = async (resourceId) => {
 };
 
 export const deleteResource = async (resourceId) => {
-    const result = await request.delete(
+    const result = await axios.delete(
         `${baseUrl}/${resourceId}`, 
         { withCredentials: true }
     );
