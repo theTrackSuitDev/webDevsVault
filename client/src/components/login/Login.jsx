@@ -7,8 +7,8 @@ export default function Login() {
                 <h1>Login</h1>
 
                 <form action="#">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter your username" />
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your Email" />
 
                     <label for="pass">Password</label>
                     <input type="password" name="pass" id="pass" placeholder="Enter your password" />

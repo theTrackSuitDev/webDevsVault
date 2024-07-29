@@ -7,12 +7,12 @@ export default function Register() {
                 <h1>Register</h1>
 
                 <form action="#">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter an username" />
-
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="Enter your email" />
-                    
+
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter an username" />
+                   
                     <label for="pass">Password</label>
                     <input type="password" name="pass" id="pass" placeholder="Set a password" />
 
