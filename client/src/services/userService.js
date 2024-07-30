@@ -5,7 +5,8 @@ const baseUrl = "http://localhost:3000/api";
 export const register = async (userData) => {
     const result = await axios.post(
         `${baseUrl}/register`, 
-        userData
+        userData,
+        { withCredentials: true }
     );
 
     return result;
@@ -14,7 +15,8 @@ export const register = async (userData) => {
 export const login = async (userData) => {
     const result = await axios.post(
         `${baseUrl}/login`, 
-        userData
+        userData,
+        { withCredentials: true }
     );
 
     return result;
@@ -22,7 +24,8 @@ export const login = async (userData) => {
 
 export const logout = async (userData) => {
     const result = await axios.post(
-        `${baseUrl}/logout`, 
+        `${baseUrl}/logout`,
+        null, 
         { withCredentials: true }
     );
 

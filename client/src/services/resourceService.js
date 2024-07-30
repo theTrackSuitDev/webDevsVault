@@ -36,7 +36,8 @@ export const edit = async (resourceId, resourceData) => {
 
 export const addToFavorites = async (resourceId) => {
     const result = await axios.put(
-        `${baseUrl}/fav/${resourceId}`, 
+        `${baseUrl}/fav/${resourceId}`,
+        null, 
         { withCredentials: true }
     );
 
@@ -45,7 +46,8 @@ export const addToFavorites = async (resourceId) => {
 
 export const removeFromFavorites = async (resourceId) => {
     const result = await axios.put(
-        `${baseUrl}/unfav/${resourceId}`, 
+        `${baseUrl}/unfav/${resourceId}`,
+        null, 
         { withCredentials: true }
     );
 
