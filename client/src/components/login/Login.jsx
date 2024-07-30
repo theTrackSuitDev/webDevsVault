@@ -1,23 +1,45 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { useForm } from "../../hooks/useForm";
 import { login } from "../../services/userService";
 import { validateLogin } from "../../utils/validation";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Login() {
+    const navigate = useNavigate();
+    const { modifyAuthState } = useContext(AuthContext)
 
     const loginCallback = async (formValues) => {
         
         try {
             const result = await login(formValues);
-            console.log(result);
+            const newAuthState = {
+                email: result.data.email,
+                username: result.data.username,
+                userId: result.data._id
+            }
+            
+            modifyAuthState(newAuthState);
+            navigate("/");
+            console.log(result.data);
         } catch (error) {
             console.log(error.response.data);
         }
         
     }
 
-    const { formValues, onChangeHandler, formSubmitHandler, validationErrors } = useForm({email: "", password: ""}, loginCallback, validateLogin);
+    const initialFormValues = {
+        email: "", 
+        password: ""
+    }
+
+    const { 
+        formValues, 
+        onChangeHandler, 
+        formSubmitHandler, 
+        validationErrors 
+    } = useForm(initialFormValues, loginCallback, validateLogin);
 
     return (
         <div className={styles.login}>
