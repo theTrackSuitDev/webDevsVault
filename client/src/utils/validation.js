@@ -16,7 +16,7 @@ export const validateLogin = (formData) => {
     }
 
     if (!email.match(emailRegEx)) {
-        errors.email = "Email is invalid format!";
+        errors.email = "Invalid email format!";
         return errors;
     }
 
