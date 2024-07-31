@@ -10,12 +10,13 @@ export default function Logout() {
     useEffect(() => {
         async function logoutHandler() {
             const response = await logout();
-            console.log(response);
+            return response;
         }
 
         try {
             const result = logoutHandler();
             modifyAuthState({});
+            console.log("Logged out successfully");
             navigate("/");
         } catch (error) {
             modifyAuthState({});
