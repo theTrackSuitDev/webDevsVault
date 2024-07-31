@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -16,6 +16,7 @@ import Logout from "./components/logout/Logout";
 import Details from "./components/details/Details";
 import NotFound from "./components/not-found/NotFound";
 import { AuthContext } from "./contexts/AuthContext";
+import { getProfile } from "./services/userService";
 
 function App() {
     const [authState, setAuthState] = useState({});
@@ -31,6 +32,27 @@ function App() {
         isLogged: !!authState.userId,
         modifyAuthState
     }
+
+    useEffect(() => {
+        async function sessionCheck() {
+            try {
+                const response = await getProfile();
+                const newAuthState = {
+                    email: response.data.email,
+                    username: response.data.username,
+                    userId: response.data._id
+                }
+    
+                modifyAuthState(newAuthState);
+            } catch (error) {
+                modifyAuthState({});
+                console.log("Session checked: Expired or missing!");
+            }
+        }
+
+        sessionCheck();
+
+    }, []);
 
     return (
         <>

@@ -31,3 +31,12 @@ export const logout = async () => {
 
     return result;
 };
+
+export const getProfile = async () => {
+    const result = await axios.get(
+        `${baseUrl}/users/profile`, 
+        { withCredentials: true }
+    );
+
+    return result;
+};
