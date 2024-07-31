@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import logo from "../../assets/images/light-bulb-gear-13626.png";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
+    const { isLogged } = useContext(AuthContext);
+
     return (
         <header>
             <div className="logo">
@@ -9,6 +13,7 @@ export default function Header() {
                     <img src={logo} alt="Bulb-logo" />
                 </Link>
             </div>
+
             <nav>
                 <ul>
                     <li id="nav-home">
@@ -31,46 +36,55 @@ export default function Header() {
                             Vault
                         </NavLink>
                     </li>
-                    <li id="nav-add">
-                        <NavLink
-                            to="/add-resource"
-                            className={({ isActive }) =>
-                                isActive ? "nav-active" : undefined
-                            }
-                        >
-                            Add Resource
-                        </NavLink>
-                    </li>
-                    <li id="nav-profile">
-                        <NavLink
-                            to="/profiles/:userId"
-                            className={({ isActive }) =>
-                                isActive ? "nav-active" : undefined
-                            }
-                        >
-                            Profile
-                        </NavLink>
-                    </li>
-                    <li id="nav-login">
-                        <NavLink
-                            to="/login"
-                            className={({ isActive }) =>
-                                isActive ? "nav-active" : undefined
-                            }
-                        >
-                            Login
-                        </NavLink>
-                    </li>
-                    <li id="nav-register">
-                        <NavLink
-                            to="/register"
-                            className={({ isActive }) =>
-                                isActive ? "nav-active" : undefined
-                            }
-                        >
-                            Register
-                        </NavLink>
-                    </li>
+                    
+                    {isLogged
+                        ? <>
+                            <li id="nav-add">
+                            <NavLink
+                                to="/add-resource"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-active" : undefined
+                                }
+                            >
+                                Add Resource
+                            </NavLink>
+                            </li>
+
+                            <li id="nav-profile">
+                            <NavLink
+                                to="/profiles/:userId"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-active" : undefined
+                                }
+                            >
+                                Profile
+                            </NavLink>
+                            </li>
+                        </>
+                        : <>
+                            <li id="nav-login">
+                                <NavLink
+                                    to="/login"
+                                    className={({ isActive }) =>
+                                        isActive ? "nav-active" : undefined
+                                    }
+                                >
+                                    Login
+                                </NavLink>
+                            </li>
+                            <li id="nav-register">
+                                <NavLink
+                                    to="/register"
+                                    className={({ isActive }) =>
+                                        isActive ? "nav-active" : undefined
+                                    }
+                                >
+                                    Register
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+                                       
                     <li id="nav-about">
                         <NavLink
                             to="/about"
@@ -81,9 +95,12 @@ export default function Header() {
                             About
                         </NavLink>
                     </li>
-                    <li id="nav-logout">
+                    {isLogged && (
+                        <li id="nav-logout">
                         <NavLink to="/logout">Logout</NavLink>
-                    </li>
+                        </li>
+                    )}
+
                 </ul>
             </nav>
         </header>

@@ -156,3 +156,11 @@ footer .icons a:hover {
 footer p {
     font-size: 0.8em;
 }
+
+footer span.user {
+    position: absolute;
+    color: #C1BDBA;
+    font-size: 0.8em;
+    bottom: 0.1em;
+    right: 2.5em;
+}

@@ -26,7 +26,8 @@ function App() {
     const authData = {
         email: authState.email,
         username: authState.username,
-        userId: authState._id,
+        userId: authState.userId,
+        isLogged: !!authState.userId,
         modifyAuthState
     }
 
