@@ -22,7 +22,7 @@ export const login = async (userData) => {
     return result;
 };
 
-export const logout = async (userData) => {
+export const logout = async () => {
     const result = await axios.post(
         `${baseUrl}/logout`,
         null, 

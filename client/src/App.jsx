@@ -12,6 +12,7 @@ import Profile from "./components/profile/Profile";
 import EditResource from "./components/add-edit-resource/EditResource";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Logout from "./components/logout/Logout";
 import Details from "./components/details/Details";
 import NotFound from "./components/not-found/NotFound";
 import { AuthContext } from "./contexts/AuthContext";
@@ -43,11 +44,12 @@ function App() {
                             <Route path="/about" element={<About />}/>
                             <Route path="/vault" element={<Catalog />}/>
                             <Route path="/add-resource" element={<AddResource />}/>
-                            <Route path="/edit/*" element={<EditResource />}/>
-                            <Route path="/profiles/*" element={<Profile />}/>
+                            <Route path="/edit/:resourceId" element={<EditResource />}/>
+                            <Route path="/profile/:userId" element={<Profile />}/>
                             <Route path="/login" element={<Login />}/>
                             <Route path="/register" element={<Register />}/>
-                            <Route path="/details/*" element={<Details />}/>
+                            <Route path="/logout" element={<Logout />}/>
+                            <Route path="/details/:resourceId" element={<Details />}/>
                             <Route path="/not-found" element={<NotFound />}/>
                             <Route path="*" element={<NotFound />}/>
                         </Routes>
