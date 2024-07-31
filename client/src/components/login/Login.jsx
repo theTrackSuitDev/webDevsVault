@@ -8,7 +8,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Login() {
     const navigate = useNavigate();
-    const { modifyAuthState } = useContext(AuthContext)
+    const { modifyAuthState } = useContext(AuthContext);
 
     const loginCallback = async (formValues) => {
         
@@ -19,10 +19,9 @@ export default function Login() {
                 username: result.data.username,
                 userId: result.data._id
             }
-            
+
             modifyAuthState(newAuthState);
             navigate("/");
-            console.log(result.data);
         } catch (error) {
             console.log(error.response.data);
         }

@@ -1,5 +1,5 @@
 .register {
-    margin: 4em auto;
+    margin: 3em auto;
     padding: 2em;
     max-width: 500px;
     background-color: #24333C;
@@ -38,4 +38,11 @@
 .register form input.button:hover {
     cursor: pointer;
     background-color: #179A77;
+}
+
+.error {
+    font-size: 0.6em;
+    padding: 0.5em;
+    color:#1AB188;
+    text-align: center;
 }
