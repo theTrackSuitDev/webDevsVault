@@ -1,4 +1,8 @@
+import * as Yup from "yup";
+
 let emailRegEx = /(?!^[.+&'_-]*@.*$)(^[_\w\d+&'-]+(\.[_\w\d+&'-]*)*@[\w\d-]+(\.[\w\d-]+)*\.(([\d]{1,3})|([\w]{2,}))$)/g;
+
+const containsWhitespace = (string) => /\s/.test(string);
 
 export const validateLogin = (formData) => {
     let errors = {};
@@ -113,3 +117,16 @@ export const validateRegister = (formData) => {
 
     return errors;
 };
+
+export const ResourceSchema = Yup.object().shape({
+    title: Yup.string()
+        .required("Title is required!")
+        .min(5, "Title must contain at least 5 characters!")
+        .max(20, "Title must contain at most 20 characters!")
+        .test(
+            "Title",
+            "Title should not contain whitespaces!",
+            (value) => !containsWhitespace(value)
+        ),
+    
+  });

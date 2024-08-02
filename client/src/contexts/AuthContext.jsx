@@ -18,8 +18,6 @@ export function AuthContextProvider(props) {
         modifyAuthState
     }
 
-    console.log("AuthData:", authData);
-
     useEffect(() => {
         async function sessionCheck() {
             try {
