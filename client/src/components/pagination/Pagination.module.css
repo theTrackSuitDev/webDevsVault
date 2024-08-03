@@ -1,0 +1,8 @@
+.pagination {
+    margin-top: 0.5em;
+}
+
+.pagination li * {
+    color: white;
+    font: 13px/1.5 Kode Mono, sans-serif;
+}

@@ -17,6 +17,15 @@
     text-align: center;
 }
 
+.catalog .table-wrapper {
+    margin: 0 auto;
+    min-height: 620px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .catalog table, th, td {
     border: 1px solid #1AB188;
     border-collapse: collapse;
