@@ -7,21 +7,24 @@ import Loader from "../loader/Loader";
 
 export default function Catalog() {
     const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
         (async () => {
-            const result = await getAll();
+            try {
+                const result = await getAll();
+                const allItems = result.data;
+                setItems(allItems);     
+            } catch (error) {
+                console.log("Error fetching items");
+            }
             setIsLoading(false);
-            const allItems = result.data;
-            setItems(allItems);            
         })()
     }, []);
 
     return (
         <div className={styles.catalog}>
-            {items.length === 0 && <h1>No resources yet</h1>}
+            {!isLoading && items.length === 0 && <h1>No resources yet</h1>}
             {items.length > 0 && (
             <>
                 {!isLoading
