@@ -31,7 +31,6 @@ export function AuthContextProvider(props) {
                 modifyAuthState(newAuthState);
             } catch (error) {
                 modifyAuthState({});
-                console.clear();
                 console.log("User session successfully checked: Invalid or missing!");
             }
         }
