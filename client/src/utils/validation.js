@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
 let emailRegEx = /(?!^[.+&'_-]*@.*$)(^[_\w\d+&'-]+(\.[_\w\d+&'-]*)*@[\w\d-]+(\.[\w\d-]+)*\.(([\d]{1,3})|([\w]{2,}))$)/g;
+let imgUrlRegEx = /^(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg|webp))$/i;
 
 const containsWhitespace = (string) => /\s/.test(string);
 
@@ -35,11 +36,6 @@ export const validateLogin = (formData) => {
     }
 
     return errors;
-
-    // if (password.length < 4) {
-    //     errors.password = "Password should be at least 4 characters!";
-    //     return errors;
-    // }
 };
 
 export const validateRegister = (formData) => {
@@ -120,13 +116,26 @@ export const validateRegister = (formData) => {
 
 export const ResourceSchema = Yup.object().shape({
     title: Yup.string()
+        .trim()
         .required("Title is required!")
-        .min(5, "Title must contain at least 5 characters!")
-        .max(20, "Title must contain at most 20 characters!")
-        .test(
-            "Title",
-            "Title should not contain whitespaces!",
-            (value) => !containsWhitespace(value)
-        ),
-    
-  });
+        .min(5, "Title must be at least 5 characters!")
+        .max(25, "Title should be no more than 25 characters!"),
+        // .test(
+        //     "Title",
+        //     "Title should not contain whitespaces!",
+        //     (value) => !containsWhitespace(value)
+        // ),
+    technology: Yup.string()
+        .required("You must choose a technology!"),
+    description: Yup.string()
+        .trim()
+        .required("Description is required!")
+        .min(10, "Description must be at least 10 characters!")
+        .max(50, "Title should be no more than 50 characters!"),
+    resourceUrl: Yup.string()
+        .required("Resource URL is required!")
+        .url("Invalid URL format!"),
+    imageUrl: Yup.string()
+        // .matches(imgUrlRegEx, "Only direct image URLs are allowed!")
+        .url("Invalid URL format!")
+});

@@ -31,7 +31,8 @@ export function AuthContextProvider(props) {
                 modifyAuthState(newAuthState);
             } catch (error) {
                 modifyAuthState({});
-                console.log("Session checked: Expired or missing!");
+                console.clear();
+                console.log("User session successfully checked: Invalid or missing!");
             }
         }
 

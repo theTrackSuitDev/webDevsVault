@@ -1,18 +1,28 @@
 import styles from "./AddResource.module.css";
 import { Formik } from 'formik';
 import { ResourceSchema } from "../../utils/validation";
+import { create } from "../../services/resourceService";
+import { useNavigate } from "react-router-dom";
 
 export default function AddResource() {
+    const navigate = useNavigate();
+
     const initialFormValues = {
         title: "",
-        tech: "",
-        desc: "",
-        url: "",
-        imgUrl: "",
+        technology: "",
+        description: "",
+        resourceUrl: "",
+        imageUrl: "",
     }
 
-    const formSubmitHandler = (values) => {
-        console.log(values);
+    const formSubmitHandler = async (values) => {
+        try {
+            const response = await create(values);
+            navigate(`/details/${response.data}`)
+        } catch (error) {           
+            console.log(error);
+        }
+
     }
 
     return (
@@ -34,18 +44,29 @@ export default function AddResource() {
                             name="title" 
                             id="title"
                             value={props.values.title}
-                            onChange={props.handleChange} 
+                            onChange={props.handleChange}
+                            onFocus={() => {
+                                props.setFieldTouched("title");
+                            }}
+                            onBlur={(event) => {
+                                props.setFieldValue(event.target.name, event.target.value.trim());
+                            }}  
                             placeholder="Resource title" 
                         />
-                        {props.errors.title && (<p className={styles.error}>{props.errors.title}</p>)}
+                        {props.errors.title && 
+                        props.touched.title && 
+                        (<p className={styles.error}>{props.errors.title}</p>)}
     
-                        <label htmlFor="tech">Technology</label>
+                        <label htmlFor="technology">Technology</label>
                         <select 
                             className={styles["tech-select"]} 
-                            name="tech" 
-                            id="tech" 
-                            value={props.values.tech}
-                            onChange={props.handleChange} 
+                            name="technology" 
+                            id="technology" 
+                            value={props.values.technology}
+                            onChange={props.handleChange}
+                            onFocus={() => {
+                                props.setFieldTouched("technology");
+                            }}
                         >
                             <option value="" disabled >Select Technology</option>
                             <option value="VanillaJS">Vanilla JS</option>
@@ -56,36 +77,60 @@ export default function AddResource() {
                             <option value="HTML/CSS">HTML/CSS</option>
                             <option value="Other">Other</option>
                         </select>
+                        {props.errors.technology && 
+                        props.touched.technology && 
+                        (<p className={styles.error}>{props.errors.technology}</p>)}
     
-                        <label htmlFor="desc">Description</label>
+                        <label htmlFor="description">Description</label>
                         <textarea 
                             type="text" 
-                            name="desc" 
-                            id="desc" 
-                            value={props.values.desc}
-                            onChange={props.handleChange} 
+                            name="description" 
+                            id="description" 
+                            value={props.values.description}
+                            onChange={props.handleChange}
+                            onBlur={(event) => {
+                                props.setFieldValue(event.target.name, event.target.value.trim());
+                            }}
+                            onFocus={() => {
+                                props.setFieldTouched("description");
+                            }} 
                             placeholder="Short description"
                         ></textarea>
+                        {props.errors.description && 
+                        props.touched.description && 
+                        (<p className={styles.error}>{props.errors.description}</p>)}
     
-                        <label htmlFor="url">Resource URL</label>
+                        <label htmlFor="resourceUrl">Resource URL</label>
                         <input 
                             type="text" 
-                            name="url" 
-                            id="url" 
-                            value={props.values.url}
-                            onChange={props.handleChange} 
+                            name="resourceUrl" 
+                            id="resourceUrl" 
+                            value={props.values.resourceUrl}
+                            onChange={props.handleChange}
+                            onFocus={() => {
+                                props.setFieldTouched("resourceUrl");
+                            }} 
                             placeholder="Link to resource" 
                         />
+                        {props.errors.resourceUrl && 
+                        props.touched.resourceUrl && 
+                        (<p className={styles.error}>{props.errors.resourceUrl}</p>)}
     
-                        <label htmlFor="imgUrl">Image URL</label>
+                        <label htmlFor="imageUrl">Image URL</label>
                         <input 
                             type="text" 
-                            name="imgUrl" 
-                            id="imgUrl"
-                            value={props.values.imgUrl}
-                            onChange={props.handleChange}  
-                            placeholder="Image URL" 
+                            name="imageUrl" 
+                            id="imageUrl"
+                            value={props.values.imageUrl}
+                            onChange={props.handleChange}
+                            onFocus={() => {
+                                props.setFieldTouched("imageUrl");
+                            }}  
+                            placeholder="Image URL(optional)" 
                         />
+                        {props.errors.imageUrl && 
+                        props.touched.imageUrl && 
+                        (<p className={styles.error}>{props.errors.imageUrl}</p>)}
     
                         <input className={styles.button} type="submit" value="Add" />
                         {/* <!-- <input className={styles.button} type="submit" value="Edit"> --> */}

@@ -1,5 +1,5 @@
 .add {
-    margin: 3em auto;
+    margin: 1em auto;
     padding: 2em;
     max-width: 500px;
     background-color: #24333C;
@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3em;
+    gap: 1em;
 }
 
 .add form {
@@ -40,7 +40,7 @@
     color: white;
     text-align: center;
     padding: 0.8rem;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .add form input.button:hover {
@@ -50,7 +50,7 @@
 
 .error {
     font-size: 0.7em;
-    padding: 0.5em;
+    padding: 0;
     color:#1AB188;
     text-align: center;
 }
