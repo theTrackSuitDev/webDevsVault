@@ -26,6 +26,8 @@
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    border-radius: 0.4em;
+    overflow: hidden;
 }
 
 .desc {
@@ -67,8 +69,8 @@
 }
 
 .interactions div.edit {
-    background-color: rgb(202, 202, 55);
-    border-color: rgb(202, 202, 55);
+    background-color: #24333C;
+    border-color: #24333C;
 }
 
 .interactions a {
@@ -76,8 +78,8 @@
 }
 
 .interactions > div.del {
-    background-color: rgb(218, 84, 84);
-    border-color: rgb(218, 84, 84);
+    background-color: #24333C;
+    border-color: #24333C;
 }
 
 .res-button:hover {
@@ -85,3 +87,6 @@
     opacity: 65%;
 }
 
+.sub-info {
+    font-size: 0.8em;
+}

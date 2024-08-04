@@ -29,9 +29,6 @@ export default function Catalog() {
         })()
     }, []);
 
-    console.log(currentPage);
-    
-
     return (
         <div className={styles.catalog}>
             {!isLoading && items.length === 0 && <h1>No resources yet</h1>}

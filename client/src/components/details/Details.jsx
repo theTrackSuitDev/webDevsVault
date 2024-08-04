@@ -1,45 +1,106 @@
 import styles from "./Details.module.css";
 import resourceImage from "../../assets/images/web-programming-12709.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { getOne } from "../../services/resourceService";
+import dateFormatter from "../../utils/dataFormatter";
+import Loader from "../loader/Loader";
 
 export default function Details() {
+    const [resource, setResource] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const { userId, isLogged } = useContext(AuthContext);
+    const { resourceId } = useParams();
+    const navigate = useNavigate();
+
+    const imgRef = useRef();
+    const onImgError = () => imgRef.current.src = resourceImage;
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const result = await getOne(resourceId);
+                const item = result.data;
+                setResource(item);
+                setIsLoading(false);
+
+            } catch (error) {
+                if (error.response?.data?.err?.name === "CastError" &&
+                    error.response?.data?.err?.path === "_id") {
+                        console.log("Resource not found!");                        
+                        navigate("/404");
+                } else {
+                    console.log("Error fetching item");
+                    console.log(error);
+                }
+            }
+
+        })()
+    }, []);
+
+    const isAuthor = resource.userId?._id === userId;
+    const isBooked = !isAuthor && (resource.subscribers?.includes(userId));
+    
     return (
         <div className={styles.details}>
-            <h1>CSS Easy round corners</h1>
-            <p>Added on 22-06-2024 by Miro</p>
-            <div className={styles["split-view"]}>
-                <div className={styles.img}>
-                    <img
-                        src={resourceImage}
-                        // Show resourceImage if the author didn't provide one.
-                        alt="Resource"
-                    />
+            {!isLoading ?
+            <>
+                <h1>{resource.title}</h1>
+                <p>{`Added on ${dateFormatter(resource.created_at)} by ${resource.userId?.username}`}</p>
+                <div className={styles["split-view"]}>
+                    <div className={styles.img}>
+                        <img
+                            ref={imgRef}
+                            src={
+                                resource.imageUrl === ""
+                                    ? resourceImage
+                                    : resource.imageUrl
+                            }
+                            onError={onImgError}
+                            alt="Resource"
+                        />
+                    </div>
+                    <div className={styles.desc}>
+                        <p>{`Tech: ${resource.technology}`}</p>
+                        <p>
+                            {`Description: ${resource.description}`}
+                        </p>
+                        <div className={styles["res-button"]}>
+                            <a href={resource.resourceUrl} target="_blank" rel="noopener noreferrer">
+                                Resource Link
+                            </a>
+                        </div>
+                        <div className={styles.interactions}>
+                            {isLogged && !isAuthor && 
+                            <>
+                                {!isBooked 
+                                    ? <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`}>
+                                        Bookmark
+                                    </div> 
+                                    : <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`}>
+                                        Unbookmark
+                                    </div>
+                                }
+                            </>
+                            }
+
+                            {isAuthor &&
+                            <>
+                                <Link to={`/edit/${resourceId}`}>
+                                <div className={`${styles["res-button"]} ${styles["edit"]}`}>Edit</div>
+                                </Link>
+                                <div className={`${styles["res-button"]} ${styles["del"]}`}>Delete</div>
+                            </>
+                            }
+                            <p className={styles["sub-info"]}>{`Bookmarked by ${resource.subscribers?.length} users`}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.desc}>
-                    <p>Tech: HTML/CSS</p>
-                    <p>
-                        Description: Simple trick to make beautiful round
-                        corners with CSS only.
-                    </p>
-                    <div className={styles["res-button"]}>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            Resource Link
-                        </a>
-                    </div>
-                    <div className={styles.interactions}>
-                        {/* <!-- <div className={`${styles["res-button"]} ${styles["fav"]}`}>
-                        Add to Favorites
-                    </div>
-                    <div className={`${styles["res-button"]} ${styles["fav"] ${styles["del"]}`}>
-                        Remove from Favorites
-                    </div> --> */}
-                        <Link to="/edit/:resourceId">
-                            <div className={`${styles["res-button"]} ${styles["edit"]}`}>Edit</div>
-                        </Link>
-                        <div className={`${styles["res-button"]} ${styles["del"]}`}>Delete</div>
-                    </div>
-                </div>
-            </div>
+            </>
+            : <Loader />
+            }
+
         </div>
     );
 }
