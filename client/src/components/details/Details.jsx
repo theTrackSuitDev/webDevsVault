@@ -20,8 +20,7 @@ export default function Details() {
     const bookmarkHandler = async (resourceId) => {
         try {
             const updatedItem = await addToBookmarks(resourceId);
-            console.log(updatedItem);
-            
+           
             setResource(updatedItem.data);
         } catch (error) {
             console.log("Error updating item");
