@@ -3,7 +3,7 @@ import resourceImage from "../../assets/images/web-programming-12709.png"
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { getOne } from "../../services/resourceService";
+import { addToBookmarks, getOne, removeFromBookmarks } from "../../services/resourceService";
 import dateFormatter from "../../utils/dataFormatter";
 import Loader from "../loader/Loader";
 
@@ -16,6 +16,30 @@ export default function Details() {
 
     const imgRef = useRef();
     const onImgError = () => imgRef.current.src = resourceImage;
+
+    const bookmarkHandler = async (resourceId) => {
+        try {
+            const updatedItem = await addToBookmarks(resourceId);
+            console.log(updatedItem);
+            
+            setResource(updatedItem.data);
+        } catch (error) {
+            console.log("Error updating item");
+            console.log(error);
+        }
+    }
+
+    const removeBookmarkHandler = async (resourceId) => {
+        try {
+            const updatedItem = await removeFromBookmarks(resourceId);
+            console.log(updatedItem);
+
+            setResource(updatedItem.data);
+        } catch (error) {
+            console.log("Error updating item");
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
         (async () => {
@@ -75,10 +99,10 @@ export default function Details() {
                             {isLogged && !isAuthor && 
                             <>
                                 {!isBooked 
-                                    ? <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`}>
+                                    ? <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`} onClick={() => bookmarkHandler(resourceId)}>
                                         Bookmark
                                     </div> 
-                                    : <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`}>
+                                    : <div className={`${styles["res-button"]} ${styles["fav"]} ${styles["del"]}`} onClick={() => removeBookmarkHandler(resourceId)}>
                                         Unbookmark
                                     </div>
                                 }
