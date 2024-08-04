@@ -46,3 +46,7 @@
     color:#1AB188;
     text-align: center;
 }
+
+.login form input.button.disabled:hover {
+    cursor: not-allowed;
+}

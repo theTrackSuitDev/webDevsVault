@@ -97,9 +97,10 @@ export default function Register() {
                     {validationErrors?.rePassword && (<p className={styles.error}>{validationErrors.rePassword}</p>)}
         
                     <input 
-                        className={styles.button} 
+                        className={`${styles.button} ${Object.keys(validationErrors).length ? styles.disabled : ""}`}
                         type="submit" 
                         value="Create a profile" 
+                        disabled = {Object.keys(validationErrors).length > 0}
                     />
                 </form>
 

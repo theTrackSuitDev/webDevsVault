@@ -68,10 +68,11 @@ export default function Login() {
                     {validationErrors?.password && (<p className={styles.error}>{validationErrors.password}</p>)}
                             
                     <input 
-                        className={styles.button}
+                        className={`${styles.button} ${Object.keys(validationErrors).length ? styles.disabled : ""}`}
                         type="submit" 
                         value="Login"
-                        />
+                        disabled = {Object.keys(validationErrors).length > 0}
+                    />
                 </form>
 
                 <p>No account? <Link to="/register">Register here!</Link></p>
