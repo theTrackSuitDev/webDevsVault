@@ -29,7 +29,6 @@ export default function AddResource() {
         
         <div className={styles.add}>
             <h1>Add a resource</h1>
-            {/* <!-- <h1>Edit</h1> --> */}
             <Formik
                 initialValues={initialFormValues}
                 validationSchema={ResourceSchema}
@@ -133,7 +132,6 @@ export default function AddResource() {
                         (<p className={styles.error}>{props.errors.imageUrl}</p>)}
     
                         <input className={styles.button} type="submit" value="Add" />
-                        {/* <!-- <input className={styles.button} type="submit" value="Edit"> --> */}
                     </form>
                     )               
                 }
