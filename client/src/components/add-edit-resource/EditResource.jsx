@@ -179,6 +179,8 @@ export default function EditResource() {
                                 value="Edit"
                                 disabled = {!props.dirty}
                             />
+
+                            {!props.dirty && <p className={styles.error}>No changes made</p>}
                         </form>
                         )               
                     }
