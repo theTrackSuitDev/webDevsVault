@@ -13,9 +13,13 @@ export default function Bookmarks({
     const pageEndIndex = currentPage * ITEMS_PER_PAGE;
     const totalPages = Math.ceil(bookmarks.length / ITEMS_PER_PAGE);
 
+    console.log(bookmarks);
+    
     return (
         <div className={styles.fav}>
         <h2>Bookmarks</h2>
+        {bookmarks.length > 0 &&
+        <>
         <div className={styles["table-wrapper"]}>
             <table className={styles.list}>
                 <thead>
@@ -43,6 +47,9 @@ export default function Bookmarks({
             page={currentPage}
             setCurrentPage={setCurrentPage}
         />
+        </>
+        }
+        {bookmarks.length === 0 && <p>No bookmarks yet</p>}
     </div>
     );
 }

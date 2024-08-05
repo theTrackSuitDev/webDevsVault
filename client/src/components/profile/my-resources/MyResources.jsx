@@ -17,33 +17,38 @@ export default function MyResources({
         <>
         <div className={styles["my-res"]}>
             <h2>My resources</h2>
-            <div className={styles["table-wrapper"]}>
-                <table className={styles.list}>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Title</th>
-                            <th>Tech</th>
-                            <th>Added on</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {myResources.slice(pageStartIndex, pageEndIndex).map((item) => (
-                            <CatalogEntry 
-                                key={item._id}
-                                item={item}
-                            />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {myResources.length > 0 && 
+            <>
+                <div className={styles["table-wrapper"]}>
+                    <table className={styles.list}>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>Tech</th>
+                                <th>Added on</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {myResources.slice(pageStartIndex, pageEndIndex).map((item) => (
+                                <CatalogEntry 
+                                    key={item._id}
+                                    item={item}
+                                />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
-            <Pagination 
-                count={totalPages} 
-                page={currentPage}
-                setCurrentPage={setCurrentPage}
-            />
+                <Pagination 
+                    count={totalPages} 
+                    page={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
+            </>
+            }
+            {myResources.length === 0 && <p>You haven't added any resources yet</p>}
         </div>
         </>
     );
