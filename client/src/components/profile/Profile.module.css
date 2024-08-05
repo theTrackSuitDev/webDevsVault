@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 5em 0;
+    padding: 1em 0;
     height: 700px;
 }
 
@@ -16,7 +16,7 @@
     justify-content: space-evenly;
     align-items: flex-start;
     gap: 10em;
-    margin-top: 2em;
+    margin-top: 0em;
     width: 90%;
     text-align: center;
     
@@ -24,10 +24,20 @@
 
 .resources .my-res, .resources .fav {
     width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.resources .my-res .table-wrapper, .resources .fav .table-wrapper {
+    /* min-height: 600px; */
+    width: 100%;
 }
 
 .resources .list {
-    margin-top: 2em;
+    margin-top: 1em;
     text-align: center;
     width: 100%;
 }

@@ -31,7 +31,7 @@ function App() {
                             <Route path="/vault" element={<Catalog />}/>
                             <Route path="/add-resource" element={<AddResource />}/>
                             <Route path="/edit/:resourceId" element={<EditResource />}/>
-                            <Route path="/profile/:userId" element={<Profile />}/>
+                            <Route path="/my-profile" element={<Profile />}/>
                             <Route path="/login" element={<Login />}/>
                             <Route path="/register" element={<Register />}/>
                             <Route path="/logout" element={<Logout />}/>

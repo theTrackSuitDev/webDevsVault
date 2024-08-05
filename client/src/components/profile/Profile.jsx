@@ -1,51 +1,40 @@
-import CatalogEntry from "../catalog-entry/CatalogEntry";
+import MyResources from "./my-resources/MyResources";
 import styles from "./Profile.module.css";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { getProfile } from "../../services/userService";
+import Bookmarks from "./bookmarks/Bookmarks";
 
 
 export default function Profile() {
+    const { userId, username } = useContext(AuthContext);
+    const [profileInfo, setProfileInfo] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            if (userId) {
+                try {
+                    const result = await getProfile();
+                    const profile = result.data;
+                    setProfileInfo(profile);                                    
+                } catch (error) {
+                    console.log("Error loading profile");
+                    console.log(error);
+                    navigate("/");
+                }  
+            }
+        })()
+    }, [userId]);
+
+    const myResources = profileInfo.themes?.slice().reverse();
+    const bookmarks = profileInfo.subs?.slice().reverse();
+
     return (
         <div className={styles.profile}>
-        <h4>Miro's profile</h4>
+        <h4>{`${username}'s profile`}</h4>
         <div className={styles.resources}>
-            <div className={styles["my-res"]}>
-                <h2>My resources</h2>
-                <table className={styles.list}>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Title</th>
-                            <th>Tech</th>
-                            <th>Added on</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <CatalogEntry />
-                    </tbody>
-
-                </table>
-            </div>
-
-            <div className={styles.fav}>
-                <h2>Favorites</h2>
-                <table className={styles.list}>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Title</th>
-                            <th>Tech</th>
-                            <th>Added on</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <CatalogEntry />
-                        <CatalogEntry />
-                        <CatalogEntry />
-                        <CatalogEntry />
-                    </tbody>
-                </table>
-            </div>
+            {myResources && <MyResources myResources = {myResources}/>}
+            {bookmarks && <Bookmarks bookmarks = {bookmarks}/>}
         </div>
     </div>
     );

@@ -52,7 +52,7 @@ export default function Header() {
 
                             <li id="nav-profile">
                             <NavLink
-                                to="/profile/:userId"
+                                to="/my-profile"
                                 className={({ isActive }) =>
                                     isActive ? "nav-active" : undefined
                                 }
