@@ -21,7 +21,7 @@ export default function Catalog() {
             try {
                 const result = await getAll();
                 const allItems = result.data;
-                setItems(allItems);     
+                setItems(allItems.reverse());     
             } catch (error) {
                 console.log("Error fetching items");
             }

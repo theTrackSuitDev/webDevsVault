@@ -1,0 +1,48 @@
+.dialog > div > div {
+    background-color: #24333C;
+    padding: 1em;
+}
+
+.dialog .title {
+    font-family: Kode Mono, sans-serif;
+    background-color: #24333C;
+    color: white;
+    font-size: 1.8em;
+}
+
+.dialog .content {
+    margin-top: 0.3em;
+    padding-bottom: 2em;
+}
+
+.dialog .message {
+    color: white;
+    font-family: Kode Mono, sans-serif;
+    font-size: 1.2em;
+}
+
+.dialog .cancel {
+    font-family: Kode Mono, sans-serif;
+    color: white;
+    font-size: 1em;
+    border-color: white;
+}
+
+.dialog .cancel:hover {
+    border-color: #1AB188;
+    background-color: #1AB188;
+    color: white;
+}
+
+.dialog .proceed {
+    font-family: Kode Mono, sans-serif;
+    color: #1AB188;
+    font-size: 1em;
+    border-color: #1AB188
+}
+
+.dialog .proceed:hover {
+    border-color: #1AB188;
+    background-color: #1AB188;
+    color: white;
+}

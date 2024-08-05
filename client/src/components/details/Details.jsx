@@ -3,13 +3,15 @@ import resourceImage from "../../assets/images/web-programming-12709.png"
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { addToBookmarks, getOne, removeFromBookmarks } from "../../services/resourceService";
+import { addToBookmarks, deleteResource, getOne, removeFromBookmarks } from "../../services/resourceService";
 import dateFormatter from "../../utils/dataFormatter";
 import Loader from "../loader/Loader";
+import ConfirmDialog from "../confirm-dialog/ConfirmDialog";
 
 export default function Details() {
     const [resource, setResource] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [showConfirm, setShowConfirm] = useState(false);
     const { userId, isLogged } = useContext(AuthContext);
     const { resourceId } = useParams();
     const navigate = useNavigate();
@@ -31,9 +33,18 @@ export default function Details() {
     const removeBookmarkHandler = async (resourceId) => {
         try {
             const updatedItem = await removeFromBookmarks(resourceId);
-            console.log(updatedItem);
-
             setResource(updatedItem.data);
+        } catch (error) {
+            console.log("Error updating item");
+            console.log(error);
+        }
+    }
+
+    const deleteHandler = async (resourceId) => {
+        try {
+            const deletedItem = await deleteResource(resourceId);
+            console.log(deletedItem);
+            navigate("/vault");
         } catch (error) {
             console.log("Error updating item");
             console.log(error);
@@ -64,6 +75,9 @@ export default function Details() {
 
     const isAuthor = resource.userId?._id === userId;
     const isBooked = !isAuthor && (resource.subscribers?.includes(userId));
+
+    const deleteDialogTitle = `Delete "${resource.title}"`
+    const deleteDialogMessage = "Are you sure you want to delete this resource?"
     
     return (
         <div className={styles.details}>
@@ -113,7 +127,7 @@ export default function Details() {
                                 <Link to={`/edit/${resourceId}`}>
                                 <div className={`${styles["res-button"]} ${styles["edit"]}`}>Edit</div>
                                 </Link>
-                                <div className={`${styles["res-button"]} ${styles["del"]}`}>Delete</div>
+                                <div className={`${styles["res-button"]} ${styles["del"]}`} onClick={() => setShowConfirm(true)}>Delete</div>
                             </>
                             }
                             <p className={styles["sub-info"]}>{`Bookmarked by ${resource.subscribers?.length} users`}</p>
@@ -123,7 +137,13 @@ export default function Details() {
             </>
             : <Loader />
             }
-
+            <ConfirmDialog 
+                open={showConfirm}
+                onClose={() => setShowConfirm(false)}
+                onProceed={() => deleteHandler(resourceId)} 
+                title={deleteDialogTitle}
+                message={deleteDialogMessage}
+            />
         </div>
     );
 }
