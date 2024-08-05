@@ -21,3 +21,7 @@
     font-size: 0.8em;
     margin-top: 2em;
 }
+
+p.mention > a {
+    color: white;
+}

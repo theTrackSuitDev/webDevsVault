@@ -75,7 +75,7 @@ export default function Login() {
                     />
                 </form>
 
-                <p>No account? <Link to="/register">Register here!</Link></p>
+                <p className={styles.redirect}>No account? <Link to="/register">Register here!</Link></p>
         
             </div>
     );

@@ -17,7 +17,7 @@ export default function About() {
             <p>
                 Back-end technologies are outside of the course scope. The app
                 is intended to use a slightly modified RESTful API provided and
-                built by the SoftUni academy for the workshop exercises.
+                built by the SoftUni academy for some workshop exercises.
             </p>
             <p>
                 HTML/CSS are outside of the course scope. The App is not

@@ -50,3 +50,7 @@
 .register form input.button.disabled:hover {
     cursor: not-allowed;
 }
+
+p.redirect > a {
+    color: white;
+}

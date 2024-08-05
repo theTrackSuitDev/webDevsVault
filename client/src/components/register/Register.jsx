@@ -104,7 +104,7 @@ export default function Register() {
                     />
                 </form>
 
-                <p>Already registered? <Link to="/login">Log in here!</Link></p>
+                <p className={styles.redirect}>Already registered? <Link to="/login">Log in here!</Link></p>
         
             </div>
     );
