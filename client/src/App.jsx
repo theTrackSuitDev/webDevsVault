@@ -15,6 +15,8 @@ import Logout from "./components/logout/Logout";
 import Details from "./components/details/Details";
 import NotFound from "./components/not-found/NotFound";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import LoggedPagesGuard from "./guards/LoggedPagesGuard";
+import GuestPagesGuard from "./guards/GuestPagesGuard";
 
 function App() {
 
@@ -23,24 +25,28 @@ function App() {
             <AuthContextProvider> 
                 <div className="content">
                     <Header />
-
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>
-                            <Route path="/about" element={<About />}/>
                             <Route path="/vault" element={<Catalog />}/>
-                            <Route path="/add-resource" element={<AddResource />}/>
-                            <Route path="/edit/:resourceId" element={<EditResource />}/>
-                            <Route path="/my-profile" element={<Profile />}/>
-                            <Route path="/login" element={<Login />}/>
-                            <Route path="/register" element={<Register />}/>
-                            <Route path="/logout" element={<Logout />}/>
                             <Route path="/details/:resourceId" element={<Details />}/>
+                            <Route path="/about" element={<About />}/>
                             <Route path="/not-found" element={<NotFound />}/>
                             <Route path="*" element={<NotFound />}/>
+
+                            <Route element={<GuestPagesGuard />}>
+                                <Route path="/login" element={<Login />}/>
+                                <Route path="/register" element={<Register />}/>
+                            </Route>
+
+                            <Route element={<LoggedPagesGuard />}>
+                                <Route path="/add-resource" element={<AddResource />}/>
+                                <Route path="/edit/:resourceId" element={<EditResource />}/>
+                                <Route path="/my-profile" element={<Profile />}/>
+                                <Route path="/logout" element={<Logout />}/>
+                            </Route>
                         </Routes>
                     </main>
-
                     <Footer />
                 </div>
             </AuthContextProvider>

@@ -20,6 +20,10 @@ export default function EditResource() {
             try {
                 const result = await getOne(resourceId);
                 const item = result.data;
+                if (item === null) {
+                    console.log("Resource not found!");                        
+                    navigate("/404");
+                }
                 setResource(item);
                 setIsLoading(false);               
             } catch (error) {

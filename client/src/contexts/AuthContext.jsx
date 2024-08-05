@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export function AuthContextProvider(props) {
     const [authState, setAuthState] = useState({});
+    const [isLoadingUserData, setIsLoadingUserData] = useState(true);
 
     const modifyAuthState = (newState) => {
         setAuthState(newState);
@@ -15,6 +16,7 @@ export function AuthContextProvider(props) {
         username: authState.username,
         userId: authState.userId,
         isLogged: !!authState.userId,
+        isLoadingUserData,
         modifyAuthState
     }
 
@@ -33,6 +35,8 @@ export function AuthContextProvider(props) {
                 modifyAuthState({});
                 console.log("User session successfully checked: Invalid or missing!");
             }
+
+            setIsLoadingUserData(false);
         }
 
         sessionCheck();
