@@ -21,6 +21,7 @@ export function interceptExpiredSession() {
 
                 if (error.response?.status === 401 &&
                     error.response?.data?.message === "Invalid or expired session!") {
+                        navigate.current("/");
                         modifyAuthState({});
                 }
 
