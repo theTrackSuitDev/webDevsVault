@@ -43,7 +43,6 @@ export default function EditResource() {
 
     useEffect(() => {
         if (resource.userId && userId && !isAuthor) {
-            toast("The resource is owned by another user!");
             navigate("/");
         }
     }, [resource, userId]);
