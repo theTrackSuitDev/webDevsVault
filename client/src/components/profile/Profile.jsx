@@ -5,12 +5,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { getProfile } from "../../services/userService";
 import Bookmarks from "./bookmarks/Bookmarks";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Profile() {
     const { userId, username } = useContext(AuthContext);
     const [profileInfo, setProfileInfo] = useState({});
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         (async () => {
             if (userId) {

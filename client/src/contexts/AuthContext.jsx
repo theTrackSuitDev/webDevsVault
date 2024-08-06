@@ -32,12 +32,9 @@ export function AuthContextProvider(props) {
                 }
     
                 modifyAuthState(newAuthState);
-                toast(`Welcome back, ${newAuthState.username}!`)
             } catch (error) {
                 modifyAuthState({});
-                console.log(error);
                 console.log("User session successfully checked: Invalid or missing!");
-                toast("Welcome, Guest!");
             }
 
             setIsLoadingUserData(false);

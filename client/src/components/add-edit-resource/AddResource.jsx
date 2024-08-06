@@ -19,6 +19,7 @@ export default function AddResource() {
     const formSubmitHandler = async (values) => {
         try {
             const response = await create(values);
+            toast("New resource created!");
             navigate(`/details/${response.data}`)
         } catch (error) {           
             console.log(error);

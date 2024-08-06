@@ -19,12 +19,14 @@ import { AuthContextProvider } from "./contexts/AuthContext";
 import LoggedPagesGuard from "./guards/LoggedPagesGuard";
 import GuestPagesGuard from "./guards/GuestPagesGuard";
 import Notification from "./components/notification/Notification";
+import InvalidSessionInterceptor from "./interceptors/InvalidSessionInterceptor";
 
 function App() {
 
     return (
         <>
             <AuthContextProvider> 
+                <InvalidSessionInterceptor />
                 <div className="content">
                     <Notification />
                     <Header />
