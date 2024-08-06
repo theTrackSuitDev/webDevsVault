@@ -12,8 +12,6 @@ export default function Bookmarks({
     const pageStartIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const pageEndIndex = currentPage * ITEMS_PER_PAGE;
     const totalPages = Math.ceil(bookmarks.length / ITEMS_PER_PAGE);
-
-    console.log(bookmarks);
     
     return (
         <div className={styles.fav}>

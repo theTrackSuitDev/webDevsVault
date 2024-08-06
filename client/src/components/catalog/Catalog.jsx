@@ -4,6 +4,7 @@ import styles from "./Catalog.module.css";
 import { getAll } from "../../services/resourceService";
 import Loader from "../loader/Loader";
 import Pagination from "../pagination/Pagination";
+import { toast } from "react-toastify";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -23,7 +24,8 @@ export default function Catalog() {
                 const allItems = result.data;
                 setItems(allItems.reverse());     
             } catch (error) {
-                console.log("Error fetching items");
+                console.log(error);
+                toast("An error occurred while fetching items.");
             }
             setIsLoading(false);
         })()

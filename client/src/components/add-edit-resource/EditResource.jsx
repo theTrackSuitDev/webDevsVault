@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export default function EditResource() {
     const navigate = useNavigate();
@@ -20,20 +21,18 @@ export default function EditResource() {
             try {
                 const result = await getOne(resourceId);
                 const item = result.data;
-                if (item === null) {
-                    console.log("Resource not found!");                        
+                if (item === null) {                      
                     navigate("/404");
                 }
                 setResource(item);
                 setIsLoading(false);               
             } catch (error) {
                 if (error.response?.data?.err?.name === "CastError" &&
-                    error.response?.data?.err?.path === "_id") {
-                        console.log("Resource not found!");                        
+                    error.response?.data?.err?.path === "_id") {                        
                         navigate("/404");
                 } else {
-                    console.log("Error fetching item");
                     console.log(error);
+                    toast("An error occurred while loading resource data.");
                 }
             }
 
@@ -44,6 +43,7 @@ export default function EditResource() {
 
     useEffect(() => {
         if (resource.userId && userId && !isAuthor) {
+            toast("The resource is owned by another user!");
             navigate("/");
         }
     }, [resource, userId]);
@@ -52,9 +52,15 @@ export default function EditResource() {
         
         try {
             const response = await edit(resourceId, values);
-            navigate(`/details/${response.data}`)
+            toast("The resource was edited successfully.");
+            navigate(`/details/${response.data}`);
         } catch (error) {           
-            console.log(error);
+            if (error.response?.data?.err?.code === 11000) {
+                toast("A resource with the same title already exists!");
+            } else {
+                console.log(error);
+                toast("An error occurred while editing the resource.");
+            }
         }
 
     }

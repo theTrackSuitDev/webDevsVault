@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { ResourceSchema } from "../../utils/validation";
 import { create } from "../../services/resourceService";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function AddResource() {
     const navigate = useNavigate();
@@ -21,6 +22,11 @@ export default function AddResource() {
             navigate(`/details/${response.data}`)
         } catch (error) {           
             console.log(error);
+            if (error.response?.data?.err?.code === 11000) {
+                toast("A resource with the same title already exists!");
+            } else {
+                toast("An error occurred while adding the resource.");
+            }
         }
 
     }

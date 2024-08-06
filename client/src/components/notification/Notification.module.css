@@ -1,0 +1,13 @@
+.notification {
+    top: 6em;
+    right: 3em;
+    width: 400px;
+}
+
+.notification div {
+    font-family: Kode Mono, sans-serif;
+    border-radius: 0.2em;
+    text-align: center;
+    background-color: #24333C;
+}
+

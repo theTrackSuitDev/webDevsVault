@@ -7,6 +7,7 @@ import { addToBookmarks, deleteResource, getOne, removeFromBookmarks } from "../
 import dateFormatter from "../../utils/dataFormatter";
 import Loader from "../loader/Loader";
 import ConfirmDialog from "../confirm-dialog/ConfirmDialog";
+import { toast } from "react-toastify";
 
 export default function Details() {
     const [resource, setResource] = useState({});
@@ -22,11 +23,11 @@ export default function Details() {
     const bookmarkHandler = async (resourceId) => {
         try {
             const updatedItem = await addToBookmarks(resourceId);
-           
             setResource(updatedItem.data);
+            toast("Added to bookmarks!");
         } catch (error) {
-            console.log("Error updating item");
             console.log(error);
+            toast("An error occurred while add bookmark.");
         }
     }
 
@@ -34,20 +35,21 @@ export default function Details() {
         try {
             const updatedItem = await removeFromBookmarks(resourceId);
             setResource(updatedItem.data);
+            toast("Removed form bookmarks!")
         } catch (error) {
-            console.log("Error updating item");
             console.log(error);
+            toast("An error occurred while removing bookmark.");
         }
     }
 
     const deleteHandler = async (resourceId) => {
         try {
             const deletedItem = await deleteResource(resourceId);
-            console.log(deletedItem);
+            toast("Resource deleted successfully.");
             navigate("/vault");
         } catch (error) {
-            console.log("Error updating item");
             console.log(error);
+            toast("An error occurred while deleting the resource.");
         }
     }
 
@@ -56,8 +58,7 @@ export default function Details() {
             try {
                 const result = await getOne(resourceId);
                 const item = result.data;
-                if (item === null) {
-                    console.log("Resource not found!");                        
+                if (item === null) {                      
                     navigate("/404");
                 }
                 setResource(item);
@@ -65,12 +66,11 @@ export default function Details() {
 
             } catch (error) {
                 if (error.response?.data?.err?.name === "CastError" &&
-                    error.response?.data?.err?.path === "_id") {
-                        console.log("Resource not found!");                        
+                    error.response?.data?.err?.path === "_id") {                      
                         navigate("/404");
                 } else {
-                    console.log("Error fetching item");
                     console.log(error);
+                    toast("An error occurred while loading the resource data.");
                 }
             }
             

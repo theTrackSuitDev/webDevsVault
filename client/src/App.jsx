@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import About from "./components/about/About";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
@@ -17,6 +18,7 @@ import NotFound from "./components/not-found/NotFound";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import LoggedPagesGuard from "./guards/LoggedPagesGuard";
 import GuestPagesGuard from "./guards/GuestPagesGuard";
+import Notification from "./components/notification/Notification";
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         <>
             <AuthContextProvider> 
                 <div className="content">
+                    <Notification />
                     <Header />
                     <main>
                         <Routes>

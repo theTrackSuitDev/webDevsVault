@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getProfile } from "../../services/userService";
 import Bookmarks from "./bookmarks/Bookmarks";
+import { toast } from "react-toastify";
 
 
 export default function Profile() {
@@ -18,7 +19,7 @@ export default function Profile() {
                     const profile = result.data;
                     setProfileInfo(profile);                                    
                 } catch (error) {
-                    console.log("Error loading profile");
+                    toast("An error occurred while loading profile data.");
                     console.log(error);
                     navigate("/");
                 }  

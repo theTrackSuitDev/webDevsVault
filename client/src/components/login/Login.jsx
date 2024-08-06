@@ -5,6 +5,8 @@ import { login } from "../../services/userService";
 import { validateLogin } from "../../utils/validation";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from 'react-toastify';
+
 
 export default function Login() {
     const navigate = useNavigate();
@@ -19,11 +21,17 @@ export default function Login() {
                 username: result.data.username,
                 userId: result.data._id
             }
-
+            
             modifyAuthState(newAuthState);
+            toast(`Welcome back, ${newAuthState.username}!`);
             navigate("/");
         } catch (error) {
-            console.log(error.response.data);
+            if (error.response?.status === 401) {
+                toast("Wrong email or password!");
+            } else {
+                console.log(error);
+                toast("An error occurred while logging in.")
+            }
         }
         
     }

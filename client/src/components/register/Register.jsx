@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { register } from "../../services/userService";
 import { useForm } from "../../hooks/useForm";
 import { validateRegister } from "../../utils/validation";
+import { toast } from "react-toastify";
 
 
 export default function Register() {
@@ -21,11 +22,16 @@ export default function Register() {
                 username: result.data.username,
                 userId: result.data._id
             }
-
             modifyAuthState(newAuthState);
+            toast(`Welcome to the Vault, ${newAuthState.username}!`);
             navigate("/");
         } catch (error) {
-            console.log(error.response.data);
+            if (error.response?.status === 409) {
+                toast("Email or Username are already registered!")
+            } else {
+                console.log(error);
+                toast("An error occurred while registering.");
+            }
         }
 
     }

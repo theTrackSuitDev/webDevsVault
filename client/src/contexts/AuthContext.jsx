@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { getProfile } from "../services/userService";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
@@ -31,9 +32,12 @@ export function AuthContextProvider(props) {
                 }
     
                 modifyAuthState(newAuthState);
+                toast(`Welcome back, ${newAuthState.username}!`)
             } catch (error) {
                 modifyAuthState({});
+                console.log(error);
                 console.log("User session successfully checked: Invalid or missing!");
+                toast("Welcome, Guest!");
             }
 
             setIsLoadingUserData(false);
