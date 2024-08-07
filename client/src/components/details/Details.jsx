@@ -27,7 +27,7 @@ export default function Details() {
             toast("Added to bookmarks!");
         } catch (error) {
             console.log(error);
-            toast("An error occurred while add bookmark.");
+            toast("An error occurred while adding bookmark.");
         }
     }
 
