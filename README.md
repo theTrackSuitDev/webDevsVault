@@ -88,7 +88,7 @@ The use-case concept behind the application is to provide a platform where both 
 <summary>Additional info</summary>
 <br>
 
-SPDB is specifically built for the educational purposes of the React Course at the SoftUni academy. Back-end technologies are outside of the course scope. The app is intended to use a slightly modified version of a RESTful API provided and built by the SoftUni academy for some workshop exercises. The WebDevs Vault is developed with aim to be functional with minimum possible modifications of the backend server, hence to cope with the API limitations on the front-end and avoid API modification as much as possible.
+The WebDevs Vault is specifically built for the educational purposes of the React Course at the SoftUni academy. Back-end technologies are outside of the course scope. The app is intended to use a slightly modified version of a RESTful API provided and built by the SoftUni academy for some workshop exercises. The WebDevs Vault is developed with aim to be functional with minimum possible modifications of the backend server, hence to cope with the API limitations on the front-end and avoid API modification as much as possible.
 
 HTML/CSS are outside of the React course scope. The App is not intended, nor required to be responsive or support mobile devices. The simplistic and basic look of the app was intended and desired. The WebDevs Vault is tested and intended to work on FHD resolution and 16:9 aspect ratio. 
 
