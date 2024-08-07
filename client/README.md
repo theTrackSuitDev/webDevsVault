@@ -117,7 +117,7 @@ In order to run the app locally, you must have installed and running:
 
 First, ensure the MongoDB server is running and uses the default port 27017.
 
-Open the "server" folder located in the WebDevs Vault repository and extract the "server" archive. It contains two folders - "REST-API" and "dbBackup".
+Extract the "server" archive located in the WebDevs Vault repository. It contains two folders - "REST-API" and "dbBackup".
 
 Then open a terminal of your choice and navigate to the extracted "REST-API" folder.
 
@@ -176,7 +176,7 @@ The recommended approach is to install and use the [MongoDB Compass GUI](https:/
 
 4. The "vaultDb" database must already contain "themes" and "users" collections, automatically created. If missing, use GUI "Create collection" button and create collections with those exact names.
 
-5. Open each of the two collections and use Add data -> Import JSON buttons to import the backup files provided in the "dbBackup" folder.
+5. Open each of the two collections and use Add data -> Import JSON buttons to import the backup files provided in the "dbBackup" folder, extracted from the server archive.
 
 You now have a set of preloaded resources, as well as 3 test users:
 | Username                       | Email     | Password                                                                 |
